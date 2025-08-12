@@ -1,0 +1,21 @@
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: printing-job
+  namespace: nginx
+spec:
+  completions: 1
+  parallelism: 1
+
+  template:
+    metadata:
+      name: printing-job-pod
+      labels:
+        apps : printing-job
+    spec:
+      containers:
+        - name: printing-cont
+          image: busybox:latest
+          command: ["sh","-c","echo Hello Praaksh Believe on god and do hardwork!! && sleep 10"]
+      restartPolicy: Never
+
